@@ -7,5 +7,5 @@ class Ceaser:
     def decrypt(self, plainText: int, key: int) -> str:
         raise NotImplementedError
 
-    def analysis(self, plainText: int, key: int) -> str:
+    def analyse(self, plainText: int, key: int) -> str:
         raise NotImplementedError
