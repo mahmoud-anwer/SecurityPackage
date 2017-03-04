@@ -10,4 +10,4 @@ Implementations for some security algorithms.
     - the test class
 - you can just run the test class to run all the test cases
 - you can test only one test case by:
-    - python -m unittest <file name>.<class name>.<function name>
+    - ```python -m unittest <file name>.<class name>.<function name>```
