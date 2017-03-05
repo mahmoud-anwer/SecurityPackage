@@ -80,9 +80,15 @@ class PlayFair:
                 pt[letter]= matrix[i1][j2]+matrix[i2][j1]
 
         plaintext = ''.join(pt)
-        for letter in range(len(plaintext)-1):
-            if plaintext[letter] == 'x':
-                plaintext = plaintext[:letter]+plaintext[letter+1:len(plaintext)]
+
+        length = len(plaintext)
+        for letter in range(length-1):
+            if letter < len(plaintext)-1:
+                if plaintext[letter] == 'x':
+                    if plaintext[letter-1] == plaintext[letter+1]:
+                        plaintext = plaintext[:letter]+plaintext[letter+1:length]
+
+
         if plaintext[len(plaintext)-1] == 'x':
             plaintext= plaintext[:len(plaintext)-1]
 
@@ -127,7 +133,7 @@ class PlayFair:
         if len(plaintext)%2 != 0 :
             plaintext = plaintext + 'x'
 
-        length = len(plaintext)/2
+        length = int (len(plaintext)/2)
         pt=["" for letter in range(length)]
         ct=["" for letter in range(length)]
 
