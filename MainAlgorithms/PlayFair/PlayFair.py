@@ -12,7 +12,71 @@ class PlayFair:
         #raise NotImplementedError
 
     def decrypt(self, cipherText: str, key:str ) -> str:
-        raise NotImplementedError
+        #raise NotImplementedError
+        checked = {}
+        alphabet = "abcdefghiklmnopqrstuvwxyz"
+        for i in range(25):
+            checked[alphabet[i]]= False
+
+        matrix = [[0 for row in range(5)] for column in range(5) ]
+        db = key.lower() + alphabet.lower()
+        ciphertext = cipherText.lower()
+
+        row = 0
+        column = 0
+        for letter in db:
+            if row < 5 and column < 5:
+                if checked[letter] is False and letter != 'j':
+                    matrix[row][column] = letter
+                    checked[letter] = True
+                    column = column +1
+                elif letter == 'j' and checked['i'] is False:
+                    matrix[row][column] = 'i'
+                    checked['i'] = True
+                    column = column
+
+
+                if column == 5:
+                    row = row+1
+                    column = 0
+        length = len(ciphertext)/2
+        ct=["" for letter in range(length)]
+        pt=["" for letter in range(length)]
+        count = 0
+        for i in range(length):
+            ct[i]=ciphertext[count] + ciphertext[count+1]
+            count = count+2
+
+        for letter in range(length):
+            str = ct[letter]
+            for row in range(5):
+                for column in range(5):
+                    if str[0] == matrix[row][column]:
+                        i1= row
+                        j1 = column
+
+                    if str[1] == matrix[row][column]:
+                        i2= row
+                        j2 = column
+
+            if i1 == i2 :
+                if j1 == 0:
+                    j1= 5
+                if j2 == 0:
+                    j2 = 5
+                pt[letter]= matrix[i1][j1-1]+matrix[i1][j2-1]
+            elif j1 == j2 :
+                if i1 == 0:
+                    i1 = 5
+                if i2 == 0:
+                    i2 = 5
+                pt[letter]= matrix[i1-1][j1]+matrix[i2-1][j1]
+            else:
+                pt[letter]= matrix[i1][j2]+matrix[i2][j1]
+
+        plaintext = ''.join(pt)
+
+        return plaintext
 
     def encrypt(self, plainText: str, key:str ) -> str:
         #raise NotImplementedError
