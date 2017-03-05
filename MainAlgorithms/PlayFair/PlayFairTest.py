@@ -49,12 +49,12 @@ class PlayFairTest(unittest.TestCase):
     def test_PlayFairTestEnc3(self):
         algorithm = PlayFair()
         cipher = algorithm.encrypt(self.mainPlain3, self.mainKey3)
-        self.assertEqual(cipher, self.mainCipher3) or self.assertEqual(cipher, self.mainCipher33)
+        self.assertTrue(cipher == self.mainCipher3 or cipher == self.mainCipher33)
 
     def test_PlayFairTestDec3(self):
         algorithm = PlayFair()
         plain = algorithm.decrypt(self.mainCipher3, self.mainKey3)
-        self.assertEqual(plain, self.mainPlain3) or self.assertEqual(plain, self.mainPlain33)
+        self.assertTrue(plain == self.mainPlain3 or plain == self.mainPlain33)
 
     def test_PlayFairTestEnc4(self):
         algorithm = PlayFair()
@@ -80,12 +80,12 @@ class PlayFairTest(unittest.TestCase):
     def test_PlayFairTestNewEnc(self):
         algorithm = PlayFair()
         cipher = algorithm.encrypt(self.newPlain, self.newKey)
-        assertEqual(cipher, self.newCipher)
+        self.assertEqual(cipher, self.newCipher)
 
     def test_PlayFairTestNewDec(self):
         algorithm = PlayFair()
         plain = algorithm.decrypt(self.newCipher, self.newKey)
-        assertEqual(plain, self.newPlain)
+        self.assertEqual(plain, self.newPlain)
 
 if __name__ == '__main__':
     unittest.main()
