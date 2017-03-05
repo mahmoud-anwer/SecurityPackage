@@ -14,5 +14,5 @@ class PlayFair:
     def decrypt(self, cipherText: str, key:str ) -> str:
         raise NotImplementedError
 
-    def encrypt(self, cipherText: str, key:str ) -> str:
+    def encrypt(self, plainText: str, key:str ) -> str:
         raise NotImplementedError
