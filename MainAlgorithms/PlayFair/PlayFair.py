@@ -39,7 +39,11 @@ class PlayFair:
                 if column == 5:
                     row = row+1
                     column = 0
-        length = len(ciphertext)/2
+
+        if len(ciphertext)%2 != 0 :
+            plaintext = ciphertext + 'x'
+
+        length = int(len(ciphertext)/2)
         ct=["" for letter in range(length)]
         pt=["" for letter in range(length)]
         count = 0
@@ -75,6 +79,11 @@ class PlayFair:
                 pt[letter]= matrix[i1][j2]+matrix[i2][j1]
 
         plaintext = ''.join(pt)
+        for letter in range(len(plaintext)-1):
+            if plaintext[letter] == 'x':
+                plaintext = plaintext[:letter]+plaintext[letter+1:len(plaintext)]
+        if plaintext[len(plaintext)-1] == 'x':
+            plaintext= plaintext[:len(plaintext)-1]
 
         return plaintext
 
