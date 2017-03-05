@@ -29,7 +29,7 @@ class PlayFairTest(unittest.TestCase):
     def test_PlayFairTestEnc1(self):
         algorithm = PlayFair()
         cipher = algorithm.encrypt(self.mainPlain1, self.mainKey1)
-        self.assertTrue(cipher == self.mainCipher1)
+        self.assertEqual(cipher , self.mainCipher1)
 
     def test_PlayFairTestDec1(self):
         algorithm = PlayFair()
@@ -49,12 +49,12 @@ class PlayFairTest(unittest.TestCase):
     def test_PlayFairTestEnc3(self):
         algorithm = PlayFair()
         cipher = algorithm.encrypt(self.mainPlain3, self.mainKey3)
-        self.assertTrue(cipher == self.mainCipher3 or cipher == self.mainCipher33)
+        self.assertEqual(cipher, self.mainCipher3 or cipher == self.mainCipher33)
 
     def test_PlayFairTestDec3(self):
         algorithm = PlayFair()
         plain = algorithm.decrypt(self.mainCipher3, self.mainKey3)
-        self.assertTrue(plain == self.mainPlain3 or plain == self.mainPlain33)
+        self.assertEqual(plain, self.mainPlain3 or plain == self.mainPlain33)
 
     def test_PlayFairTestEnc4(self):
         algorithm = PlayFair()
