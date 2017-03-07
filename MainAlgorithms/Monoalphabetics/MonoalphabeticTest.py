@@ -25,69 +25,69 @@ class MonoalphabeticTest(unittest.TestCase):
     def test_MonoTestEnc1(self):
         algorithm = Monoalphabetic()
         cipher = algorithm.encrypt(self.mainPlain, self.mainKey)
-        assertEqual(cipher, self.mainCipher)
+        self.assertEqual(cipher, self.mainCipher)
 
     def test_MonoTestDec1(self):
         algorithm = Monoalphabetic()
         plain = algorithm.decrypt(self.mainCipher, self.mainKey)
-        assertEqual(plain, self.mainPlain)
+        self.assertEqual(plain, self.mainPlain)
 
     def test_MonoTestAnalysisNaive1(self):
         regex = "d.{3}hijk.{4}p.rs.u.w.{4}b."
 
         algorithm = Monoalphabetic()
         key = algorithm.analyse(self.mainPlain, self.mainCipher)
-        assertEqual(len(key), 26)
-        assertEqual(len(set(key)), 26)
+        self.assertEqual(len(key), 26)
+        self.assertEqual(len(set(key)), 26)
 
-        assertTrue(Regex.match(regex, key))
+        self.assertTrue(Regex.match(regex, key))
 
     def test_MonoTestEnc2(self):
         algorithm = Monoalphabetic()
         cipher = algorithm.encrypt(self.mainPlain1, self.mainKey1)
-        assertEqual(cipher, self.mainCipher1)
+        self.assertEqual(cipher, self.mainCipher1)
 
     def test_MonoTestDec2(self):
         algorithm = Monoalphabetic()
         plain = algorithm.decrypt(self.mainCipher1, self.mainKey1)
-        assertEqual(plain, self.mainPlain1)
+        self.assertEqual(plain, self.mainPlain1)
 
     def test_MonoTestAnalysisNaive2(self):
         algorithm = Monoalphabetic()
         key = algorithm.analyse(self.mainPlain1, self.mainCipher1)
-        assertEqual(len(key), 26)
-        assertEqual(len(set(key)), 26)
-        assertEqual(key, self.mainKey1)
+        self.assertEqual(len(key), 26)
+        self.assertEqual(len(set(key)), 26)
+        self.assertEqual(key, self.mainKey1)
 
     def test_MonoTestEnc3(self):
         algorithm = Monoalphabetic()
         cipher = algorithm.encrypt(self.mainPlain2, self.mainKey1)
-        assertEqual(cipher, self.mainCipher2)
+        self.assertEqual(cipher, self.mainCipher2)
 
     def test_MonoTestDec3(self):
         algorithm = Monoalphabetic()
         plain = algorithm.decrypt(self.mainCipher2, self.mainKey1)
-        assertEqual(plain, self.mainPlain2)
+        self.assertEqual(plain, self.mainPlain2)
 
     def test_MonoTestAnalysisNaive3(self):
         regex = "isy.k.{2}ux.{2}zqmct.lofn.{3}a."
 
         algorithm = Monoalphabetic()
         key = algorithm.analyse(self.mainPlain2, self.mainCipher2)
-        assertEqual(len(key), 26)
-        assertEqual(len(set(key)), 26)
+        self.assertEqual(len(key), 26)
+        self.assertEqual(len(set(key)), 26)
 
-        assertTrue(Regex.match(regex, key))
+        self.assertTrue(Regex.match(regex, key))
 
     def test_MonoTestEnc4(self):
         algorithm = Monoalphabetic()
         cipher = algorithm.encrypt(self.largePlain, self.largeKey)
-        assertEqual(cipher, self.largeCipher)
+        self.assertEqual(cipher, self.largeCipher)
 
     def test_MonoTestDec4(self):
         algorithm = Monoalphabetic()
         cipher = algorithm.decrypt(self.largeCipher, self.largeKey)
-        assertEqual(cipher, self.largePlain)
+        self.assertEqual(cipher, self.largePlain)
 
     def test_MonoTestAnalysisFrequency(self):
         algorithm = Monoalphabetic()
@@ -98,27 +98,27 @@ class MonoalphabeticTest(unittest.TestCase):
             if self.largePlain[iii] == plain[iii]:
                 count += 1
 
-        assertTrue(count * 100 / self.largePlain.Length > 70)
+        self.assertTrue(count * 100 / self.largePlain.Length > 70)
 
     def test_MonoTestNewEnc(self):
         algorithm = Monoalphabetic()
         cipher = algorithm.encrypt(self.newPlain, self.newKey)
-        assertEqual(cipher, self.newCipher)
+        self.assertEqual(cipher, self.newCipher)
 
     def test_MonoTestNewDec(self):
         algorithm = Monoalphabetic()
         plain = algorithm.decrypt(self.newCipher, self.newKey)
-        assertEqual(plain, self.newPlain)
+        self.assertEqual(plain, self.newPlain)
 
     def test_MonoTestNewAnalysisNaive(self):
         regex = "u.ive.sta.{2}dfgh.{2}lmo.qw.{3}"
 
         algorithm = Monoalphabetic()
         key = algorithm.analyse(self.newPlain, self.newCipher)
-        assertEqual(len(key), 26)
-        assertEqual(len(set(Char)), 26)
+        self.assertEqual(len(key), 26)
+        self.assertEqual(len(set(Char)), 26)
 
-        assertTrue(Regex.match(regex, key))
+        self.assertTrue(Regex.match(regex, key))
 
 
 if __name__ == '__main__':
